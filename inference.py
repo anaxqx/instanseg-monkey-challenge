@@ -33,13 +33,8 @@ import torch
 from typing import List
 import ttach as tta
 
-for_submission = False
-use_tta = False
-
-#INPUT_PATH = Path("test/input") #remove test fro docker
-INPUT_PATH = Path("/home/cdt/Documents/Projects/monkey-challenge-instanseg/evaluation/validation_set/")
-OUTPUT_PATH = Path("/home/cdt/Documents/Projects/monkey-challenge-instanseg/evaluation/test/input/")
-MODEL_PATH = Path("example_model")
+for_submission = True
+use_tta = True
 
 model_name =  "crannog_04.pt" #"1937330.pt" #1930849.pt" #this is instanseg-3
 #model_name = "1937330.pt" #
@@ -114,8 +109,7 @@ class ModelEnsemble(torch.nn.Module):
         if use_tta:
             transforms = tta.Compose([
                 tta.VerticalFlip(),
-                tta.HorizontalFlip(),
-                tta.Rotate90(angles=[0, 180]),  
+                tta.Rotate90(angles=[0,90, 180, 270]),  
             ])
             model = tta.ClassificationTTAWrapper(model, transforms, merge_mode='mean')
         return model
@@ -203,7 +197,7 @@ def run():
             mask_full_res = slidemask.read_region((bbox[0][1], bbox[0][0]), 0, (bbox[1][1] - bbox[0][1], bbox[1][0] - bbox[0][0]), as_array=True)
             image = slidepascpg.read_region((bbox[0][1], bbox[0][0]), 0, (bbox[1][1] - bbox[0][1], bbox[1][0] - bbox[0][0]), as_array=True)
 
-            labels , input_tensor = brightfield_nuclei.eval_medium_image(image,pixel_size = 0.24199951445730394, rescale_output = rescale_output, seed_threshold = 0.0, tile_size= 1024)
+            labels , input_tensor = brightfield_nuclei.eval_medium_image(image,pixel_size = 0.24199951445730394, rescale_output = rescale_output, seed_threshold = 0.1, tile_size= 1024)
             mask = _rescale_to_pixel_size(_to_tensor_float32(mask_full_res), 0.24199951445730394, destination_pixel_size).to(device)
 
             tensor = _rescale_to_pixel_size(_to_tensor_float32(image), 0.24199951445730394, destination_pixel_size).to(device)
