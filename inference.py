@@ -1,20 +1,3 @@
-"""
-It is meant to run within a container.
-
-To run it locally, you can call the following bash script:
-
-  ./test_run.sh
-
-This will start the inference and reads from ./test/input and outputs to ./test/output
-
-To save the container and prep it for upload to Grand-Challenge.org you can call:
-
-  ./save.sh
-
-Any container that shows the same behavior will do, this is purely an example of how one COULD do it.
-
-Happy programming!
-"""
 
 from pathlib import Path
 from glob import glob
@@ -36,10 +19,11 @@ import ttach as tta
 for_submission = True
 use_tta = True
 
-model_name =  "crannog_04.pt" #"1937330.pt" #1930849.pt" #this is instanseg-3
-#model_name = "1937330.pt" #
+
 normalise_HE_bool = False
-model_names = ["1949717.pt"]#["1952372.pt","1950672.pt","1949389_2.pt","1949717.pt"] #"1937330.pt"
+
+final_submission_1 = ["1937330.pt","1950672.pt","1949389_2.pt","1949717.pt"] #this is the public leaderboard #2 solution
+model_names = ["1952372.pt","1950672.pt","1949389_2.pt"] ##this is the public leaderboard #1 solution
 
 instanseg_name = "instanseg_brightfield_monkey.pt"
 
@@ -213,8 +197,6 @@ def run():
             crops,masks = get_masked_patches(labels,tensor.to(device), patch_size=patch_size)
             x =(torch.cat((crops / 255.0,masks),dim= 1))
 
-          #  breakpoint()
-
 
             with torch.amp.autocast("cuda"):
 
@@ -252,12 +234,9 @@ def run():
                 all_classes.extend(y_lymphocytes)
                 all_confidences.extend(confidence_lymphocytes)
 
-
         all_coords = np.array(all_coords)
         all_classes = np.array(all_classes)
         all_confidences = np.array(all_confidences)
-
-       # print(all_classes.shape, np.unique(all_classes, return_counts=True))
             
         output_dict, output_dict_monocytes, output_dict_inflammatory_cells = get_dicts(all_coords,all_classes,all_confidences)
 

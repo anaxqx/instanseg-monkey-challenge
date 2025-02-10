@@ -9,8 +9,6 @@ import pdb
 
 def centroids_from_lab(lab: torch.Tensor):
 
-    
-    
     mesh_grid = torch.stack(torch.meshgrid(torch.arange(lab.shape[-2], device = lab.device), torch.arange(lab.shape[-1],device = lab.device), indexing="ij")).float()
 
     sparse_onehot, label_ids = torch_sparse_onehot(lab, flatten=True)
