@@ -16,7 +16,7 @@ The final submission uses an ensemble of 4 models and 2 x 4 TTA augmentations.
 
 For training:
 
-First create monkey_cpg_gold.h5 and monkey_cpg_gold.h5 using "dataset_prep_monkey.ipynb" notebook. 
+First create monkey_cpg_gold.h5 and monkey_ihc_gold.h5 using "dataset_prep_monkey.ipynb" notebook. 
 
 Then train a mobilenet on the IHC images:
 ```
