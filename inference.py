@@ -27,12 +27,9 @@ model_names = ["1952372.pt","1950672.pt","1949389_2.pt"] ##this is the public le
 
 instanseg_name = "instanseg_brightfield_monkey.pt"
 
-if "large" in model_name:
-    destination_pixel_size =  0.24199951445730394
-    patch_size = 224
-else:
-    destination_pixel_size =  0.5
-    patch_size = 128
+
+destination_pixel_size =  0.5
+patch_size = 128
 rescale_output = False if destination_pixel_size == 0.5 else True
 
 if for_submission:
