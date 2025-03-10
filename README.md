@@ -29,3 +29,18 @@ Then
 python train.py --data [monkey_cpg_silver,monkey_cpg_gold] --encoder efficientnet_l --loss [cross_entropy,cross_entropy] -in_mem False --num_workers 9 -wd 0 -dp 0 -jitter False -bs 128
 ```
 
+For inference, download our models from our latest releases. Store them in a folder called "models". 
+
+
+The paths are defined at the start of the inference.py file. Input requires the same structure as defined in the monkey challenge.
+```
+    INPUT_PATH = Path("/input")
+    OUTPUT_PATH = Path("/output")
+    MODEL_PATH = Path("models")
+```
+
+To run inference;
+
+```
+python inference.py
+```
