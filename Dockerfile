@@ -1,5 +1,5 @@
-# FROM nvidia/cuda:11.1.1-cudnn8-runtime-ubuntu20.04
-FROM nvidia/cuda:12.1.0-cudnn8-runtime-ubuntu20.04
+FROM nvidia/cuda:11.1.1-cudnn8-runtime-ubuntu20.04
+# FROM nvidia/cuda:12.1.0-cudnn8-runtime-ubuntu20.04
 ENV DBUS_SESSION_BUS_ADDRESS=/dev/null
 
 ENV TZ=Europe/Amsterdam
