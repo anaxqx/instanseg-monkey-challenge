@@ -1,4 +1,4 @@
-instanseg-torch[full]=0.0.6
+instanseg-torch[full]==0.0.6
 ttach
 timm
 lightning
