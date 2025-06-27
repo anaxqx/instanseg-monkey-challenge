@@ -44,7 +44,6 @@ WORKDIR /opt/ml/model
 WORKDIR /opt/app
 COPY requirements.txt /tmp/requirements.txt
 RUN pip install --upgrade pip wheel && \
-    pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121 && \
     pip install -r /tmp/requirements.txt
 
 # Verify torch installation to ensure it's available
