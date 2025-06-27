@@ -35,7 +35,7 @@ rescale_output = False if destination_pixel_size == 0.5 else True
 if for_submission:
     INPUT_PATH = Path("/input") #remove test fro docker
     OUTPUT_PATH = Path("/output")
-    MODEL_PATH = Path("models")
+    MODEL_PATH = Path("/opt/ml/model/models")
 
 
 def normalise_HE(x):
