@@ -27,7 +27,8 @@ normalise_HE_bool = False
 # model_names = ["1952372.pt","1950672.pt","1949389_2.pt"] ##this is the public leaderboard #1 solution
 
 # model_names = ["1952372.pt"]
-model_names = ["1952372.pt", "1950672.pt"]
+# model_names = ["1952372.pt", "1950672.pt"]
+model_names = ["1950672.pt"]
 
 instanseg_name = "instanseg_brightfield_monkey.pt"
 
